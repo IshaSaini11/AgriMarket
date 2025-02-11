@@ -1,6 +1,21 @@
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
+const navProfile = document.getElementById("nav-profile");
+const profileBtn = navProfile.querySelector(".nav__profile-btn");
+const profileDropdown = navProfile.querySelector(".nav__profile-dropdown");
+
+profileBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevents immediate closing
+  navProfile.classList.toggle("open");
+});
+
+// Close dropdown if clicked outside
+document.addEventListener("click", (event) => {
+  if (!navProfile.contains(event.target)) {
+    navProfile.classList.remove("open");
+  }
+});
 
 menuBtn.addEventListener("click", (e) => {
   navLinks.classList.toggle("open");
@@ -12,12 +27,6 @@ menuBtn.addEventListener("click", (e) => {
 navLinks.addEventListener("click", (e) => {
   navLinks.classList.remove("open");
   menuBtnIcon.setAttribute("class", "ri-menu-line");
-});
-
-const navSearch = document.getElementById("nav-search");
-
-navSearch.addEventListener("click", (e) => {
-  navSearch.classList.toggle("open");
 });
 
 const scrollRevealOption = {
